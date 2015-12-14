@@ -43,7 +43,7 @@ public:
 	virtual void receiveAttack(const int damage);
 	inline bool isAlive() const { return (healthPoints > 0); }
 	void receiveHealing(const int amount);
-	virtual void move(const int xpos, const int ypos) const = 0;
+	virtual void move();
 
 protected:
 private:

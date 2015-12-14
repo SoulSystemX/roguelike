@@ -22,8 +22,11 @@ public:
 	// Clears the console, note this only works on a Windows O/S console
 	static void clrScr();
 
-	// Clears the console, note this only works on a Windows O/S console
+	// Sets cursor position in the console, note this only works on a Windows O/S console
 	static void setPos(int &x, int &y);
+
+	// Sets cursor position in the console, note this only works on a Windows O/S console
+	static void setCursorVisible(bool visible, DWORD size);
 	
 	// Waits for key to be pressed then returns the key as a char value
 	inline static char waitForKeypress() { while(!_kbhit()); return _getch(); }

@@ -64,7 +64,6 @@ void GameUtils::setPos(int &x, int &y)
 		return;
 	}
 
-	// Fill the buffer with empty whitespace
 	DWORD cellCount = csbi.dwSize.X *csbi.dwSize.Y;
 	COORD homeCoords = { x,y };
 	DWORD count;
@@ -77,4 +76,19 @@ void GameUtils::setPos(int &x, int &y)
 
 	// Now place the console cursor to the first position in the console
 	SetConsoleCursorPosition(hStdOut, homeCoords);
+}
+
+void GameUtils::setCursorVisible(bool visible, DWORD size) // set bool visible = 0 - invisible, bool visible = 1 - visible
+{
+
+	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	if (size == 0)
+	{
+		size = 20;	// default cursor size Changing to numbers from 1 to 20, decreases cursor width
+	}
+	CONSOLE_CURSOR_INFO lpCursor;
+	lpCursor.bVisible = visible;
+	lpCursor.dwSize = size;
+	SetConsoleCursorInfo(hStdOut, &lpCursor);
 }

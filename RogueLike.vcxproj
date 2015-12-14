@@ -115,15 +115,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="include\Player.cpp" />
     <ClCompile Include="src\GameUtils.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Rogue.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\RogueLikebackup\include\RNGI.hpp" />
-    <ClInclude Include="..\RogueLikebackup\include\RNGR.hpp" />
+    <ClInclude Include="include\GameConstants.hpp" />
     <ClInclude Include="include\GameUtils.hpp" />
     <ClInclude Include="include\Player.hpp" />
+    <ClInclude Include="include\RNGI.hpp" />
+    <ClInclude Include="include\RNGR.hpp" />
+    <ClInclude Include="include\Rogue.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
