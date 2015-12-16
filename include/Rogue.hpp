@@ -16,21 +16,13 @@ class Rogue : public Player
 {
 public:
 	inline Rogue() :
-		name(""),
-		maxHealthPoints(0),
-		healthPoints(0),
-		posX(0),
-		posY(0)
+		Player("", 0, 0, 0)
 	{
 		;
 	} // All member variables in a known state
 
 	inline Rogue(const std::string& name, const int healthPoints, int x, int y) :
-		name(name),
-		maxHealthPoints(healthPoints),
-		healthPoints(healthPoints),
-		posX(x),
-		posY(y)
+		Player(name, healthPoints, x, y)
 	{
 		;
 	} // All member variables in a known state
@@ -38,11 +30,16 @@ public:
 	  //Destructor
 	inline virtual ~Rogue() { ; }
 
-	virtual void receiveAttack(const int damage); // needs to overide
-	void move() override; // needs to override?
-
+	//inline void receiveAttack(const int damage) override { }
+	virtual void move(int xpos, int ypos) override;
+	
 protected:
 private:
+
+	// Copy constructor
+	Rogue(const Rogue& other) = delete;
+	// Overloaded assignment operator
+	Rogue& operator=(const Rogue& other) = delete;
 
 	std::string name;
 	int maxHealthPoints;

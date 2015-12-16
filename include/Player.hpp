@@ -40,17 +40,17 @@ public:
 	inline int getMaxHealthPoints() const { return maxHealthPoints; }
 	inline int getHealthPoints() const { return healthPoints; }
 
-	virtual void receiveAttack(const int damage);
+	//virtual void receiveAttack(const int damage);
 	inline bool isAlive() const { return (healthPoints > 0); }
 	void receiveHealing(const int amount);
-	virtual void move();
+	virtual void move(int xpos, int ypos);
 
 protected:
 private:
 	// Copy constructor
-	//Player(const Player& other) = delete;
+	Player(const Player& other) = delete;
 	// Overloaded assignment operator
-	//Player& operator=(const Player& other) = delete;
+	Player& operator=(const Player& other) = delete;
 
 	std::string name;
 	int maxHealthPoints;

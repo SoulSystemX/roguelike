@@ -7,38 +7,38 @@ Ver:    1.0
 
 #include <iostream>
 #include "Rogue.hpp"
-#include "GameUtils.hpp"
+#include "ConsoleUtils.hpp"
 
 using namespace std;
 
-void Rogue::move() 
-{
-	switch (GameUtils::waitForKeypress())
+void Rogue::move(int xpos, int ypos) {
+	switch (ConsoleUtils::waitForKeypress())
 	{
 		// Move down
 	case 's':
-		Rogue::posY++;
+		this->posY++;
 		break;
 		// Move left
 	case 'a':
-		Rogue::posX--;
+		this->posX--;
 		break;
 		// Move right
 	case 'd':
-		Rogue::posX++;
+		this->posX++;
 		break;
 		// Move up
 	case 'w':
-		Rogue::posY--;
+		this->posY--;
 		break;
 		// Quit
-	//case 'q':
+		//case 'q':
 		//return 0;
 		// Ignore any other key
 	default:
 		break;
 	}
 }
+
 
 void receiveAttack(const int damage) {
 

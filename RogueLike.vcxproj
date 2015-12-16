@@ -115,14 +115,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\GameUtils.cpp" />
+    <ClCompile Include="src\ConsoleUtils.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Rogue.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\ConsoleUtils.hpp" />
     <ClInclude Include="include\GameConstants.hpp" />
-    <ClInclude Include="include\GameUtils.hpp" />
     <ClInclude Include="include\Player.hpp" />
     <ClInclude Include="include\RNGI.hpp" />
     <ClInclude Include="include\RNGR.hpp" />
