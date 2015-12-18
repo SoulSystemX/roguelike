@@ -66,8 +66,13 @@ public:
 	// Position console at the centre of the desktop
 	static void centreWindowPosition();
 
-	// Clears the console
+	// Clears the all console
 	static void clear();
+
+	// Clears a portion of the console defined by the bounds of a rectangle supplied to the function,
+	// the x and y values define the top left of the rectangle, the w and h define its width and height,
+	// note that the cursor stays where it was originally
+	static void clear(const SHORT x, const SHORT y, const SHORT w, const SHORT h);
 
 	// Get if current colour of console foreground text is intense
 	static bool getFGIntensity();

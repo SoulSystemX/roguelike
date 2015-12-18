@@ -259,23 +259,22 @@ void ConsoleUtils::clear()
 		return;
 	}
 
-	// Get the number of cells in the current buffer
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
 	if(!(GetConsoleScreenBufferInfo(hStdOut, &csbi)))
 	{
 		return;
 	}
 
-	// Fill the buffer with empty whitespace
-	DWORD cellCount = csbi.dwSize.X * csbi.dwSize.Y;
+	// Fill the console buffer with empty whitespace
+	DWORD cellCount = getCols() * getRows();
 	COORD homeCoords = { 0, 0 };
-	DWORD count;
+	DWORD count; // Ignored
 	if(!(FillConsoleOutputCharacter(hStdOut, static_cast<TCHAR>(' '), cellCount, homeCoords, &count)))
 	{
 		return;
 	}
 
-	// Fill the buffer with the current colours and attributes
+	// Fill the console buffer with the current colours and attributes
 	if(!(FillConsoleOutputAttribute(hStdOut, csbi.wAttributes, cellCount, homeCoords, &count)))
 	{
 		return;
@@ -283,6 +282,51 @@ void ConsoleUtils::clear()
 
 	// Now place the console cursor to the first position in the console
 	SetConsoleCursorPosition(hStdOut, homeCoords);
+}
+
+// Clears a portion of the console defined by the bounds of a rectangle supplied to the function,
+// the x and y values define the top left of the rectangle, the w and h define its width and height,
+// note that the cursor stays where it was originally
+void ConsoleUtils::clear(const SHORT x, const SHORT y, const SHORT w, const SHORT h)
+{
+	// Ensure bounds of rectangle are confined in the console buffer or otherwise return without
+	// clearing the rectangle
+	if((x < 0) || (y < 0) || ((x + w) > getCols()) || ((y + h) > getRows()))
+	{
+		// Invalid rectangle so abort
+		return;
+	}
+
+	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	if(INVALID_HANDLE_VALUE == hStdOut)
+	{
+		return;
+	}
+
+	// Get the number of cells in the current buffer
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	if(!(GetConsoleScreenBufferInfo(hStdOut, &csbi)))
+	{
+		return;
+	}
+
+	// Fill the supplied rectangle region of the console buffer with empty whitespace
+	for(int r = 0; r < h; r++)
+	{
+		COORD homeCoords = { x, (y + r) };
+		DWORD count; // Ignored
+		if(!(FillConsoleOutputCharacter(hStdOut, static_cast<TCHAR>(' '), w, homeCoords, &count)))
+		{
+			return;
+		}
+
+		// Fill the buffer with the current colours and attributes
+		if(!(FillConsoleOutputAttribute(hStdOut, csbi.wAttributes, w, homeCoords, &count)))
+		{
+			return;
+		}
+	}
 }
 
 // Get if current colour of console foreground text is intense
