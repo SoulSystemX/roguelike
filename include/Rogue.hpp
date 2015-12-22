@@ -31,7 +31,7 @@ public:
 	inline virtual ~Rogue() { ; }
 
 	//inline void receiveAttack(const int damage) override { }
-	virtual void move(int xpos, int ypos) override;
+	//virtual void move(int xpos, int ypos) override;
 	
 protected:
 private:

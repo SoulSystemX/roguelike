@@ -9,6 +9,7 @@ Ver:    0.1
 #define _PLAYER_
 
 #include <string>
+#include "ConsoleUtils.hpp"
 
 class Player
 {
@@ -40,10 +41,14 @@ public:
 	inline int getMaxHealthPoints() const { return maxHealthPoints; }
 	inline int getHealthPoints() const { return healthPoints; }
 
-	//virtual void receiveAttack(const int damage);
+	virtual void receiveAttack(const int damage);
 	inline bool isAlive() const { return (healthPoints > 0); }
-	void receiveHealing(const int amount);
+	//void receiveHealing(const int amount);
 	virtual void move(int xpos, int ypos);
+	void Draw(void);
+	// Changes how the actor appears in the game world
+	void SetAppearance(char nDisplayChar, short nDisplayColor);
+	
 
 protected:
 private:
@@ -57,7 +62,11 @@ private:
 	int healthPoints;
 	int posX;
 	int posY;
-	const char symbol = '@';
+	//const char symbol = '@'; REPLACED BELOW
+	// ASCII character code used to draw the actor to the screen
+	char    nDisplayChar;
+	// Color code for this actor
+	short   nColorCode;
 };
 
 #endif // _PLAYER_

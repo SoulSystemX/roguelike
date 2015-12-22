@@ -1,8 +1,8 @@
 /******************************************************************************
 	File:   GameConstants.hpp
-	Author: Chris Knowles, DCET, University of Sunderland
+	Author: Lee Maguire
 	Date:   Dec 2015
-	Ver:    Tutorial 11B 1.0
+	Ver:    1.0
 	Notes:	Class to contain globally scoped game constants through a class
 			scope, hence keeping them all in the same place and with a
 			consistent usage
@@ -19,6 +19,12 @@
 #define TILE_GRASS		4
 #define TILE_TREE		5
 #define TILE_WATER		6
+
+// Maximum number of items that the player can hold
+#define INVENTORY_SLOTS		10
+
+// Maximum number of actors the game can support at the same time
+#define MAX_ACTORS			10
 
 // Item Types
 #define ITEM_NONE           0
@@ -50,7 +56,7 @@ const TILE_TYPE sTileIndex[] = {
 };
 
 // Global array used to define all item types used in the game
-ITEM_TYPE sItemIndex[] = {
+const ITEM_TYPE sItemIndex[] = {
 	{ ' ', ConsoleUtils::WHITE, "EMPTY" },  // (0) ITEM_NONE (Unused inventory slot)
 	{ (char)173, ConsoleUtils::CYAN, "Potion" }, // (1) ITEM_POTION
 	{ '*', ConsoleUtils::WHITE, "Rock" },   // (2) ITEM_ROCK 
